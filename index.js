@@ -32,6 +32,14 @@ mongoose.connection.on("error", (err) => {
   console.error("MongoDB connection error:", err);
 });
 
+app.get("/", (req, res) => {
+  res.status(200).send({
+    status: "ok",
+    message: "API is healthy and running",
+    timestamp: new Date(),
+  });
+});
+
 if(require.main === module){
     app.listen(process.env.PORT || 3000, () => {
         console.log(`API is now online on port ${ process.env.PORT || 3000 }`)
@@ -40,3 +48,4 @@ if(require.main === module){
 // [SECTION] Export for Boodle testing
 
 module.exports = { app, mongoose };
+
